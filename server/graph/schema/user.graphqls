@@ -1,0 +1,50 @@
+scalar UUID
+
+type User {
+  id: ID!
+  username: String!
+  email: String!
+  name: String!
+  password: String!
+  updatedAt: String!
+  createdAt: String!
+}
+
+type AuthPayload {
+  token: String!
+  refreshToken: String
+  user: User!
+}
+
+type LogoutResponse {
+  success: Boolean!
+  message: String
+  errors: [String!]
+}
+
+input RegisterRequest {
+  username: String!
+  email: String!
+  password: String!
+  name: String!
+}
+
+input LoginRequest {
+  email: String!
+  password: String!
+}
+
+input RefreshRequest {
+  refreshToken: String!
+}
+
+type Mutation {
+  register(request: RegisterRequest!): AuthPayload!
+  login(request: LoginRequest!): AuthPayload!
+  refreshToken(request: RefreshRequest!): AuthPayload!
+  logout: LogoutResponse!
+}
+
+type Query {
+  me: User
+}
