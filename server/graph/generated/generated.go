@@ -52,15 +52,8 @@ type ComplexityRoot struct {
 		User         func(childComplexity int) int
 	}
 
-	LogoutResponse struct {
-		Errors  func(childComplexity int) int
-		Message func(childComplexity int) int
-		Success func(childComplexity int) int
-	}
-
 	Mutation struct {
 		Login        func(childComplexity int, request model.LoginRequest) int
-		Logout       func(childComplexity int) int
 		RefreshToken func(childComplexity int, request model.RefreshRequest) int
 		Register     func(childComplexity int, request model.RegisterRequest) int
 	}
@@ -84,7 +77,6 @@ type MutationResolver interface {
 	Register(ctx context.Context, request model.RegisterRequest) (*model.AuthPayload, error)
 	Login(ctx context.Context, request model.LoginRequest) (*model.AuthPayload, error)
 	RefreshToken(ctx context.Context, request model.RefreshRequest) (*model.AuthPayload, error)
-	Logout(ctx context.Context) (*model.LogoutResponse, error)
 }
 type QueryResolver interface {
 	Me(ctx context.Context) (*model.User, error)
@@ -130,27 +122,6 @@ func (e *executableSchema) Complexity(ctx context.Context, typeName, field strin
 
 		return e.complexity.AuthPayload.User(childComplexity), true
 
-	case "LogoutResponse.errors":
-		if e.complexity.LogoutResponse.Errors == nil {
-			break
-		}
-
-		return e.complexity.LogoutResponse.Errors(childComplexity), true
-
-	case "LogoutResponse.message":
-		if e.complexity.LogoutResponse.Message == nil {
-			break
-		}
-
-		return e.complexity.LogoutResponse.Message(childComplexity), true
-
-	case "LogoutResponse.success":
-		if e.complexity.LogoutResponse.Success == nil {
-			break
-		}
-
-		return e.complexity.LogoutResponse.Success(childComplexity), true
-
 	case "Mutation.login":
 		if e.complexity.Mutation.Login == nil {
 			break
@@ -162,13 +133,6 @@ func (e *executableSchema) Complexity(ctx context.Context, typeName, field strin
 		}
 
 		return e.complexity.Mutation.Login(childComplexity, args["request"].(model.LoginRequest)), true
-
-	case "Mutation.logout":
-		if e.complexity.Mutation.Logout == nil {
-			break
-		}
-
-		return e.complexity.Mutation.Logout(childComplexity), true
 
 	case "Mutation.refreshToken":
 		if e.complexity.Mutation.RefreshToken == nil {
@@ -376,12 +340,6 @@ type AuthPayload {
   user: User!
 }
 
-type LogoutResponse {
-  success: Boolean!
-  message: String
-  errors: [String!]
-}
-
 input RegisterRequest {
   username: String!
   email: String!
@@ -402,7 +360,6 @@ type Mutation {
   register(request: RegisterRequest!): AuthPayload!
   login(request: LoginRequest!): AuthPayload!
   refreshToken(request: RefreshRequest!): AuthPayload!
-  logout: LogoutResponse!
 }
 
 type Query {
@@ -753,132 +710,6 @@ func (ec *executionContext) fieldContext_AuthPayload_user(_ context.Context, fie
 	return fc, nil
 }
 
-func (ec *executionContext) _LogoutResponse_success(ctx context.Context, field graphql.CollectedField, obj *model.LogoutResponse) (ret graphql.Marshaler) {
-	fc, err := ec.fieldContext_LogoutResponse_success(ctx, field)
-	if err != nil {
-		return graphql.Null
-	}
-	ctx = graphql.WithFieldContext(ctx, fc)
-	defer func() {
-		if r := recover(); r != nil {
-			ec.Error(ctx, ec.Recover(ctx, r))
-			ret = graphql.Null
-		}
-	}()
-	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (any, error) {
-		ctx = rctx // use context from middleware stack in children
-		return obj.Success, nil
-	})
-	if err != nil {
-		ec.Error(ctx, err)
-		return graphql.Null
-	}
-	if resTmp == nil {
-		if !graphql.HasFieldError(ctx, fc) {
-			ec.Errorf(ctx, "must not be null")
-		}
-		return graphql.Null
-	}
-	res := resTmp.(bool)
-	fc.Result = res
-	return ec.marshalNBoolean2bool(ctx, field.Selections, res)
-}
-
-func (ec *executionContext) fieldContext_LogoutResponse_success(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
-	fc = &graphql.FieldContext{
-		Object:     "LogoutResponse",
-		Field:      field,
-		IsMethod:   false,
-		IsResolver: false,
-		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
-			return nil, errors.New("field of type Boolean does not have child fields")
-		},
-	}
-	return fc, nil
-}
-
-func (ec *executionContext) _LogoutResponse_message(ctx context.Context, field graphql.CollectedField, obj *model.LogoutResponse) (ret graphql.Marshaler) {
-	fc, err := ec.fieldContext_LogoutResponse_message(ctx, field)
-	if err != nil {
-		return graphql.Null
-	}
-	ctx = graphql.WithFieldContext(ctx, fc)
-	defer func() {
-		if r := recover(); r != nil {
-			ec.Error(ctx, ec.Recover(ctx, r))
-			ret = graphql.Null
-		}
-	}()
-	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (any, error) {
-		ctx = rctx // use context from middleware stack in children
-		return obj.Message, nil
-	})
-	if err != nil {
-		ec.Error(ctx, err)
-		return graphql.Null
-	}
-	if resTmp == nil {
-		return graphql.Null
-	}
-	res := resTmp.(*string)
-	fc.Result = res
-	return ec.marshalOString2ᚖstring(ctx, field.Selections, res)
-}
-
-func (ec *executionContext) fieldContext_LogoutResponse_message(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
-	fc = &graphql.FieldContext{
-		Object:     "LogoutResponse",
-		Field:      field,
-		IsMethod:   false,
-		IsResolver: false,
-		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
-			return nil, errors.New("field of type String does not have child fields")
-		},
-	}
-	return fc, nil
-}
-
-func (ec *executionContext) _LogoutResponse_errors(ctx context.Context, field graphql.CollectedField, obj *model.LogoutResponse) (ret graphql.Marshaler) {
-	fc, err := ec.fieldContext_LogoutResponse_errors(ctx, field)
-	if err != nil {
-		return graphql.Null
-	}
-	ctx = graphql.WithFieldContext(ctx, fc)
-	defer func() {
-		if r := recover(); r != nil {
-			ec.Error(ctx, ec.Recover(ctx, r))
-			ret = graphql.Null
-		}
-	}()
-	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (any, error) {
-		ctx = rctx // use context from middleware stack in children
-		return obj.Errors, nil
-	})
-	if err != nil {
-		ec.Error(ctx, err)
-		return graphql.Null
-	}
-	if resTmp == nil {
-		return graphql.Null
-	}
-	res := resTmp.([]string)
-	fc.Result = res
-	return ec.marshalOString2ᚕstringᚄ(ctx, field.Selections, res)
-}
-
-func (ec *executionContext) fieldContext_LogoutResponse_errors(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
-	fc = &graphql.FieldContext{
-		Object:     "LogoutResponse",
-		Field:      field,
-		IsMethod:   false,
-		IsResolver: false,
-		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
-			return nil, errors.New("field of type String does not have child fields")
-		},
-	}
-	return fc, nil
-}
-
 func (ec *executionContext) _Mutation_register(ctx context.Context, field graphql.CollectedField) (ret graphql.Marshaler) {
 	fc, err := ec.fieldContext_Mutation_register(ctx, field)
 	if err != nil {
@@ -1064,58 +895,6 @@ func (ec *executionContext) fieldContext_Mutation_refreshToken(ctx context.Conte
 	if fc.Args, err = ec.field_Mutation_refreshToken_args(ctx, field.ArgumentMap(ec.Variables)); err != nil {
 		ec.Error(ctx, err)
 		return fc, err
-	}
-	return fc, nil
-}
-
-func (ec *executionContext) _Mutation_logout(ctx context.Context, field graphql.CollectedField) (ret graphql.Marshaler) {
-	fc, err := ec.fieldContext_Mutation_logout(ctx, field)
-	if err != nil {
-		return graphql.Null
-	}
-	ctx = graphql.WithFieldContext(ctx, fc)
-	defer func() {
-		if r := recover(); r != nil {
-			ec.Error(ctx, ec.Recover(ctx, r))
-			ret = graphql.Null
-		}
-	}()
-	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (any, error) {
-		ctx = rctx // use context from middleware stack in children
-		return ec.resolvers.Mutation().Logout(rctx)
-	})
-	if err != nil {
-		ec.Error(ctx, err)
-		return graphql.Null
-	}
-	if resTmp == nil {
-		if !graphql.HasFieldError(ctx, fc) {
-			ec.Errorf(ctx, "must not be null")
-		}
-		return graphql.Null
-	}
-	res := resTmp.(*model.LogoutResponse)
-	fc.Result = res
-	return ec.marshalNLogoutResponse2ᚖhoraᚑserverᚋgraphᚋmodelᚐLogoutResponse(ctx, field.Selections, res)
-}
-
-func (ec *executionContext) fieldContext_Mutation_logout(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
-	fc = &graphql.FieldContext{
-		Object:     "Mutation",
-		Field:      field,
-		IsMethod:   true,
-		IsResolver: true,
-		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
-			switch field.Name {
-			case "success":
-				return ec.fieldContext_LogoutResponse_success(ctx, field)
-			case "message":
-				return ec.fieldContext_LogoutResponse_message(ctx, field)
-			case "errors":
-				return ec.fieldContext_LogoutResponse_errors(ctx, field)
-			}
-			return nil, fmt.Errorf("no field named %q was found under type LogoutResponse", field.Name)
-		},
 	}
 	return fc, nil
 }
@@ -3730,49 +3509,6 @@ func (ec *executionContext) _AuthPayload(ctx context.Context, sel ast.SelectionS
 	return out
 }
 
-var logoutResponseImplementors = []string{"LogoutResponse"}
-
-func (ec *executionContext) _LogoutResponse(ctx context.Context, sel ast.SelectionSet, obj *model.LogoutResponse) graphql.Marshaler {
-	fields := graphql.CollectFields(ec.OperationContext, sel, logoutResponseImplementors)
-
-	out := graphql.NewFieldSet(fields)
-	deferred := make(map[string]*graphql.FieldSet)
-	for i, field := range fields {
-		switch field.Name {
-		case "__typename":
-			out.Values[i] = graphql.MarshalString("LogoutResponse")
-		case "success":
-			out.Values[i] = ec._LogoutResponse_success(ctx, field, obj)
-			if out.Values[i] == graphql.Null {
-				out.Invalids++
-			}
-		case "message":
-			out.Values[i] = ec._LogoutResponse_message(ctx, field, obj)
-		case "errors":
-			out.Values[i] = ec._LogoutResponse_errors(ctx, field, obj)
-		default:
-			panic("unknown field " + strconv.Quote(field.Name))
-		}
-	}
-	out.Dispatch(ctx)
-	if out.Invalids > 0 {
-		return graphql.Null
-	}
-
-	atomic.AddInt32(&ec.deferred, int32(len(deferred)))
-
-	for label, dfs := range deferred {
-		ec.processDeferredGroup(graphql.DeferredGroup{
-			Label:    label,
-			Path:     graphql.GetPath(ctx),
-			FieldSet: dfs,
-			Context:  ctx,
-		})
-	}
-
-	return out
-}
-
 var mutationImplementors = []string{"Mutation"}
 
 func (ec *executionContext) _Mutation(ctx context.Context, sel ast.SelectionSet) graphql.Marshaler {
@@ -3809,13 +3545,6 @@ func (ec *executionContext) _Mutation(ctx context.Context, sel ast.SelectionSet)
 		case "refreshToken":
 			out.Values[i] = ec.OperationContext.RootResolverMiddleware(innerCtx, func(ctx context.Context) (res graphql.Marshaler) {
 				return ec._Mutation_refreshToken(ctx, field)
-			})
-			if out.Values[i] == graphql.Null {
-				out.Invalids++
-			}
-		case "logout":
-			out.Values[i] = ec.OperationContext.RootResolverMiddleware(innerCtx, func(ctx context.Context) (res graphql.Marshaler) {
-				return ec._Mutation_logout(ctx, field)
 			})
 			if out.Values[i] == graphql.Null {
 				out.Invalids++
@@ -4367,20 +4096,6 @@ func (ec *executionContext) unmarshalNLoginRequest2horaᚑserverᚋgraphᚋmodel
 	return res, graphql.ErrorOnPath(ctx, err)
 }
 
-func (ec *executionContext) marshalNLogoutResponse2horaᚑserverᚋgraphᚋmodelᚐLogoutResponse(ctx context.Context, sel ast.SelectionSet, v model.LogoutResponse) graphql.Marshaler {
-	return ec._LogoutResponse(ctx, sel, &v)
-}
-
-func (ec *executionContext) marshalNLogoutResponse2ᚖhoraᚑserverᚋgraphᚋmodelᚐLogoutResponse(ctx context.Context, sel ast.SelectionSet, v *model.LogoutResponse) graphql.Marshaler {
-	if v == nil {
-		if !graphql.HasFieldError(ctx, graphql.GetFieldContext(ctx)) {
-			ec.Errorf(ctx, "the requested element is null which the schema does not allow")
-		}
-		return graphql.Null
-	}
-	return ec._LogoutResponse(ctx, sel, v)
-}
-
 func (ec *executionContext) unmarshalNRefreshRequest2horaᚑserverᚋgraphᚋmodelᚐRefreshRequest(ctx context.Context, v any) (model.RefreshRequest, error) {
 	res, err := ec.unmarshalInputRefreshRequest(ctx, v)
 	return res, graphql.ErrorOnPath(ctx, err)
@@ -4698,42 +4413,6 @@ func (ec *executionContext) marshalOBoolean2ᚖbool(ctx context.Context, sel ast
 	_ = ctx
 	res := graphql.MarshalBoolean(*v)
 	return res
-}
-
-func (ec *executionContext) unmarshalOString2ᚕstringᚄ(ctx context.Context, v any) ([]string, error) {
-	if v == nil {
-		return nil, nil
-	}
-	var vSlice []any
-	vSlice = graphql.CoerceList(v)
-	var err error
-	res := make([]string, len(vSlice))
-	for i := range vSlice {
-		ctx := graphql.WithPathContext(ctx, graphql.NewPathWithIndex(i))
-		res[i], err = ec.unmarshalNString2string(ctx, vSlice[i])
-		if err != nil {
-			return nil, err
-		}
-	}
-	return res, nil
-}
-
-func (ec *executionContext) marshalOString2ᚕstringᚄ(ctx context.Context, sel ast.SelectionSet, v []string) graphql.Marshaler {
-	if v == nil {
-		return graphql.Null
-	}
-	ret := make(graphql.Array, len(v))
-	for i := range v {
-		ret[i] = ec.marshalNString2string(ctx, sel, v[i])
-	}
-
-	for _, e := range ret {
-		if e == graphql.Null {
-			return graphql.Null
-		}
-	}
-
-	return ret
 }
 
 func (ec *executionContext) unmarshalOString2ᚖstring(ctx context.Context, v any) (*string, error) {

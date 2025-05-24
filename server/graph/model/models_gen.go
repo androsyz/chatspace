@@ -13,12 +13,6 @@ type LoginRequest struct {
 	Password string `json:"password"`
 }
 
-type LogoutResponse struct {
-	Success bool     `json:"success"`
-	Message *string  `json:"message,omitempty"`
-	Errors  []string `json:"errors,omitempty"`
-}
-
 type Mutation struct {
 }
 

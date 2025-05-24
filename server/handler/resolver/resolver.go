@@ -13,7 +13,6 @@ type ucUserInterface interface {
 	Register(ctx context.Context, request model.RegisterRequest) (*model.AuthPayload, error)
 	Login(ctx context.Context, request model.LoginRequest) (*model.AuthPayload, error)
 	RefreshToken(ctx context.Context, request model.RefreshRequest) (*model.AuthPayload, error)
-	Logout(ctx context.Context) (*model.LogoutResponse, error)
 	Me(ctx context.Context) (*model.User, error)
 }
 

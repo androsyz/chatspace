@@ -130,13 +130,6 @@ func (uc *UcUser) RefreshToken(ctx context.Context, request model.RefreshRequest
 	return uc.generateAuthPayload(resp)
 }
 
-func (uc *UcUser) Logout(ctx context.Context) (*model.LogoutResponse, error) {
-	msg := "logged out"
-	return &model.LogoutResponse{
-		Message: &msg,
-	}, nil
-}
-
 func (uc *UcUser) Me(ctx context.Context) (*model.User, error) {
 	return nil, fmt.Errorf("not implemented")
 }
