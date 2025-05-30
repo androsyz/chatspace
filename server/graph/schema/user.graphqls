@@ -2,7 +2,6 @@ scalar UUID
 
 type User {
   id: ID!
-  username: String!
   email: String!
   name: String!
   password: String!
@@ -10,17 +9,15 @@ type User {
   createdAt: String!
 }
 
-type AuthPayload {
+type AuthResponse {
   token: String!
   refreshToken: String
-  user: User!
 }
 
 input RegisterRequest {
-  username: String!
   email: String!
-  password: String!
   name: String!
+  password: String!
 }
 
 input LoginRequest {
@@ -33,11 +30,11 @@ input RefreshRequest {
 }
 
 type Mutation {
-  register(request: RegisterRequest!): AuthPayload!
-  login(request: LoginRequest!): AuthPayload!
-  refreshToken(request: RefreshRequest!): AuthPayload!
+  register(request: RegisterRequest!): AuthResponse!
+  login(request: LoginRequest!): AuthResponse!
+  refreshToken(request: RefreshRequest!): AuthResponse!
 }
 
 type Query {
-  me: User
+  user: User
 }

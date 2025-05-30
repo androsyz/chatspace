@@ -6,29 +6,28 @@ package resolver
 
 import (
 	"context"
-	"fmt"
 	"hora-server/graph/generated"
 	"hora-server/graph/model"
 )
 
 // Register is the resolver for the register field.
-func (r *mutationResolver) Register(ctx context.Context, request model.RegisterRequest) (*model.AuthPayload, error) {
+func (r *mutationResolver) Register(ctx context.Context, request model.RegisterRequest) (*model.AuthResponse, error) {
 	return r.ucUser.Register(ctx, request)
 }
 
 // Login is the resolver for the login field.
-func (r *mutationResolver) Login(ctx context.Context, request model.LoginRequest) (*model.AuthPayload, error) {
-	panic(fmt.Errorf("not implemented: Login - login"))
+func (r *mutationResolver) Login(ctx context.Context, request model.LoginRequest) (*model.AuthResponse, error) {
+	return r.ucUser.Login(ctx, request)
 }
 
 // RefreshToken is the resolver for the refreshToken field.
-func (r *mutationResolver) RefreshToken(ctx context.Context, request model.RefreshRequest) (*model.AuthPayload, error) {
-	panic(fmt.Errorf("not implemented: RefreshToken - refreshToken"))
+func (r *mutationResolver) RefreshToken(ctx context.Context, request model.RefreshRequest) (*model.AuthResponse, error) {
+	return r.ucUser.RefreshToken(ctx, request)
 }
 
-// Me is the resolver for the me field.
-func (r *queryResolver) Me(ctx context.Context) (*model.User, error) {
-	panic(fmt.Errorf("not implemented: Me - me"))
+// User is the resolver for the user field.
+func (r *queryResolver) User(ctx context.Context) (*model.User, error) {
+	return r.ucUser.User(ctx)
 }
 
 // Mutation returns generated.MutationResolver implementation.
@@ -39,15 +38,3 @@ func (r *Resolver) Query() generated.QueryResolver { return &queryResolver{r} }
 
 type mutationResolver struct{ *Resolver }
 type queryResolver struct{ *Resolver }
-
-// !!! WARNING !!!
-// The code below was going to be deleted when updating resolvers. It has been copied here so you have
-// one last chance to move it out of harms way if you want. There are two reasons this happens:
-//  - When renaming or deleting a resolver the old code will be put in here. You can safely delete
-//    it when you're done.
-//  - You have helper methods in this file. Move them out to keep these resolver files clean.
-/*
-	func (r *mutationResolver) Logout(ctx context.Context) (*model.LogoutResponse, error) {
-	panic(fmt.Errorf("not implemented: Logout - logout"))
-}
-*/

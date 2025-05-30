@@ -1,0 +1,23 @@
+type Space {
+  id: ID!
+  name: String!
+  description: String
+  members: [User!]!
+  admins: [User!]!
+  Messages: [Message!]!
+}
+
+input SpaceRequest {
+  name: String!
+  description: String
+}
+
+extend type Query {
+  spaces: [Space!]!
+  space(id: ID!): Space
+}
+
+extend type Mutation {
+  createSpace(request: SpaceRequest!): Space!
+  joinSpace(spaceID: ID!): Space!
+}

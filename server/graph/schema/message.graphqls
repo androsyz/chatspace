@@ -1,0 +1,21 @@
+scalar Time
+
+type Message {
+  id: ID!
+  content: String!
+  user: User!
+  space: Space!
+  createdAt: Time!
+}
+
+extend type Query {
+  messages(spaceID: ID!): [Message!]!
+}
+
+extend type Mutation {
+  sendMessage(spaceID: ID!, content: String!): Message!
+}
+
+extend type Subscription {
+  messageSent(spaceID: ID!): Message!
+}

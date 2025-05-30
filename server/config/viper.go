@@ -21,19 +21,20 @@ func NewViper() (*Config, error) {
 }
 
 func loadConfiguration(cfg *Config) error {
-	viper.SetConfigName("config")
-	viper.SetConfigType("json")
+	viper.SetEnvKeyReplacer(strings.NewReplacer(".", "_", "-", "_"))
+	viper.AllowEmptyEnv(true)
+	viper.AutomaticEnv()
+
 	viper.AddConfigPath(".")
+	viper.SetConfigFile(".env")
+	viper.SetConfigType("env")
 
 	if err := viper.ReadInConfig(); err != nil {
 		if _, ok := err.(viper.ConfigFileNotFoundError); !ok {
 			return fmt.Errorf("failed to read config file: %w", err)
 		}
-		log.Warn().Msg("Config file not found. Using environment variables or defaults.")
+		log.Warn().Msg(".env file not found. Using environment variables or defaults.")
 	}
-	viper.SetEnvKeyReplacer(strings.NewReplacer(".", "_", "-", "_"))
-	viper.AllowEmptyEnv(true)
-	viper.AutomaticEnv()
 
 	if err := viper.Unmarshal(cfg); err != nil {
 		return fmt.Errorf("failed to unmarshal config: %w", err)

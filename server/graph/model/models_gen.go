@@ -2,15 +2,26 @@
 
 package model
 
-type AuthPayload struct {
+import (
+	"time"
+)
+
+type AuthResponse struct {
 	Token        string  `json:"token"`
 	RefreshToken *string `json:"refreshToken,omitempty"`
-	User         *User   `json:"user"`
 }
 
 type LoginRequest struct {
 	Email    string `json:"email"`
 	Password string `json:"password"`
+}
+
+type Message struct {
+	ID        string    `json:"id"`
+	Content   string    `json:"content"`
+	User      *User     `json:"user"`
+	Space     *Space    `json:"space"`
+	CreatedAt time.Time `json:"createdAt"`
 }
 
 type Mutation struct {
@@ -24,15 +35,30 @@ type RefreshRequest struct {
 }
 
 type RegisterRequest struct {
-	Username string `json:"username"`
 	Email    string `json:"email"`
-	Password string `json:"password"`
 	Name     string `json:"name"`
+	Password string `json:"password"`
+}
+
+type Space struct {
+	ID          string     `json:"id"`
+	Name        string     `json:"name"`
+	Description *string    `json:"description,omitempty"`
+	Members     []*User    `json:"members"`
+	Admins      []*User    `json:"admins"`
+	Messages    []*Message `json:"Messages"`
+}
+
+type SpaceRequest struct {
+	Name        string  `json:"name"`
+	Description *string `json:"description,omitempty"`
+}
+
+type Subscription struct {
 }
 
 type User struct {
 	ID        string `json:"id"`
-	Username  string `json:"username"`
 	Email     string `json:"email"`
 	Name      string `json:"name"`
 	Password  string `json:"password"`

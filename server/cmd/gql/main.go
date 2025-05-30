@@ -8,14 +8,16 @@ import (
 	"hora-server/handler/middleware"
 	"hora-server/handler/resolver"
 	"log"
-
-	http "github.com/go-kratos/kratos/v2/transport/http"
+	"net/http"
+	"slices"
+	"time"
 
 	"github.com/99designs/gqlgen/graphql/handler"
 	"github.com/99designs/gqlgen/graphql/handler/extension"
 	"github.com/99designs/gqlgen/graphql/handler/lru"
 	"github.com/99designs/gqlgen/graphql/handler/transport"
 	"github.com/99designs/gqlgen/graphql/playground"
+	"github.com/gorilla/websocket"
 	"github.com/vektah/gqlparser/v2/ast"
 )
 
@@ -37,13 +39,26 @@ func main() {
 		return
 	}
 
-	rsvl, err := resolver.NewResolver(app.UcUser)
+	rsvl, err := resolver.NewResolver(app.UcUser, app.UcSpace, app.UcMessage)
 	if err != nil {
 		zlog.Err(err)
 		return
 	}
 
 	srv := handler.New(generated.NewExecutableSchema(generated.Config{Resolvers: rsvl}))
+	srv.AddTransport(transport.Websocket{
+		KeepAlivePingInterval: 10 * time.Second,
+		Upgrader: websocket.Upgrader{
+			CheckOrigin: func(r *http.Request) bool {
+				origin := r.Header.Get("Origin")
+				if origin == "" || origin == r.Header.Get("Host") {
+					return true
+				}
+
+				return slices.Contains([]string{"http://localhost:8000"}, origin)
+			},
+		},
+	})
 	srv.AddTransport(transport.Options{})
 	srv.AddTransport(transport.GET{})
 	srv.AddTransport(transport.POST{})
@@ -54,21 +69,16 @@ func main() {
 		Cache: lru.New[string](100),
 	})
 
+	middleware.ApplyAuthMiddleware(srv, cfg.Settings.JWTSecret)
+
 	address := cfg.Server.Address
 	if address == "" {
 		address = defaultPort
 	}
 
-	httpServer := http.NewServer(
-		http.Address(":"+address),
-		http.Middleware(
-			middleware.AuthenticationGQL(cfg.Settings.JWTSecret),
-		),
-	)
-
-	httpServer.Handle("/", playground.Handler("GraphQL playground", "/query"))
-	httpServer.Handle("/query", srv)
+	http.Handle("/", playground.Handler("GraphQL playground", "/query"))
+	http.Handle("/query", srv)
 
 	zlog.Info().Msgf("connect to http://localhost:%s for GraphQL playground", address)
-	log.Fatal(httpServer.Start(ctx))
+	log.Fatal(http.ListenAndServe(":"+address, nil))
 }
