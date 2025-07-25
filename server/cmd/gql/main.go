@@ -2,11 +2,11 @@ package main
 
 import (
 	"context"
-	"hora-server/cmd/initalize"
-	"hora-server/config"
-	"hora-server/graph/generated"
-	"hora-server/handler/middleware"
-	"hora-server/handler/resolver"
+	"chatspace-server/cmd/initalize"
+	"chatspace-server/config"
+	"chatspace-server/graph/generated"
+	"chatspace-server/handler/middleware"
+	"chatspace-server/handler/resolver"
 	"log"
 	"net/http"
 	"slices"

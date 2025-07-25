@@ -2,9 +2,9 @@ package initalize
 
 import (
 	"context"
-	"hora-server/config"
-	"hora-server/repository"
-	"hora-server/usecase"
+	"chatspace-server/config"
+	"chatspace-server/repository"
+	"chatspace-server/usecase"
 
 	"github.com/rs/zerolog"
 )

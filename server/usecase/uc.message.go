@@ -3,12 +3,12 @@ package usecase
 import (
 	"context"
 	"encoding/json"
-	"hora-server/constant"
-	"hora-server/graph/model"
-	modelDB "hora-server/model"
-	"hora-server/pkg/authctx"
-	"hora-server/pkg/gqlhelper"
-	"hora-server/pkg/helper"
+	"chatspace-server/constant"
+	"chatspace-server/graph/model"
+	modelDB "chatspace-server/model"
+	"chatspace-server/pkg/authctx"
+	"chatspace-server/pkg/gqlhelper"
+	"chatspace-server/pkg/helper"
 
 	"github.com/go-redis/redis/v8"
 	"github.com/rs/zerolog"

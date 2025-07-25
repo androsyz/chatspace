@@ -4,10 +4,10 @@ package generated
 
 import (
 	"bytes"
+	"chatspace-server/graph/model"
 	"context"
 	"errors"
 	"fmt"
-	"hora-server/graph/model"
 	"io"
 	"strconv"
 	"sync"
@@ -627,7 +627,7 @@ func (ec *executionContext) field_Mutation_createSpace_argsRequest(
 ) (model.SpaceRequest, error) {
 	ctx = graphql.WithPathContext(ctx, graphql.NewPathWithField("request"))
 	if tmp, ok := rawArgs["request"]; ok {
-		return ec.unmarshalNSpaceRequest2horaᚑserverᚋgraphᚋmodelᚐSpaceRequest(ctx, tmp)
+		return ec.unmarshalNSpaceRequest2chatspaceᚑserverᚋgraphᚋmodelᚐSpaceRequest(ctx, tmp)
 	}
 
 	var zeroVal model.SpaceRequest
@@ -673,7 +673,7 @@ func (ec *executionContext) field_Mutation_login_argsRequest(
 ) (model.LoginRequest, error) {
 	ctx = graphql.WithPathContext(ctx, graphql.NewPathWithField("request"))
 	if tmp, ok := rawArgs["request"]; ok {
-		return ec.unmarshalNLoginRequest2horaᚑserverᚋgraphᚋmodelᚐLoginRequest(ctx, tmp)
+		return ec.unmarshalNLoginRequest2chatspaceᚑserverᚋgraphᚋmodelᚐLoginRequest(ctx, tmp)
 	}
 
 	var zeroVal model.LoginRequest
@@ -696,7 +696,7 @@ func (ec *executionContext) field_Mutation_refreshToken_argsRequest(
 ) (model.RefreshRequest, error) {
 	ctx = graphql.WithPathContext(ctx, graphql.NewPathWithField("request"))
 	if tmp, ok := rawArgs["request"]; ok {
-		return ec.unmarshalNRefreshRequest2horaᚑserverᚋgraphᚋmodelᚐRefreshRequest(ctx, tmp)
+		return ec.unmarshalNRefreshRequest2chatspaceᚑserverᚋgraphᚋmodelᚐRefreshRequest(ctx, tmp)
 	}
 
 	var zeroVal model.RefreshRequest
@@ -719,7 +719,7 @@ func (ec *executionContext) field_Mutation_register_argsRequest(
 ) (model.RegisterRequest, error) {
 	ctx = graphql.WithPathContext(ctx, graphql.NewPathWithField("request"))
 	if tmp, ok := rawArgs["request"]; ok {
-		return ec.unmarshalNRegisterRequest2horaᚑserverᚋgraphᚋmodelᚐRegisterRequest(ctx, tmp)
+		return ec.unmarshalNRegisterRequest2chatspaceᚑserverᚋgraphᚋmodelᚐRegisterRequest(ctx, tmp)
 	}
 
 	var zeroVal model.RegisterRequest
@@ -1160,7 +1160,7 @@ func (ec *executionContext) _Message_user(ctx context.Context, field graphql.Col
 	}
 	res := resTmp.(*model.User)
 	fc.Result = res
-	return ec.marshalNUser2ᚖhoraᚑserverᚋgraphᚋmodelᚐUser(ctx, field.Selections, res)
+	return ec.marshalNUser2ᚖchatspaceᚑserverᚋgraphᚋmodelᚐUser(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) fieldContext_Message_user(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
@@ -1218,7 +1218,7 @@ func (ec *executionContext) _Message_space(ctx context.Context, field graphql.Co
 	}
 	res := resTmp.(*model.Space)
 	fc.Result = res
-	return ec.marshalNSpace2ᚖhoraᚑserverᚋgraphᚋmodelᚐSpace(ctx, field.Selections, res)
+	return ec.marshalNSpace2ᚖchatspaceᚑserverᚋgraphᚋmodelᚐSpace(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) fieldContext_Message_space(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
@@ -1320,7 +1320,7 @@ func (ec *executionContext) _Mutation_register(ctx context.Context, field graphq
 	}
 	res := resTmp.(*model.AuthResponse)
 	fc.Result = res
-	return ec.marshalNAuthResponse2ᚖhoraᚑserverᚋgraphᚋmodelᚐAuthResponse(ctx, field.Selections, res)
+	return ec.marshalNAuthResponse2ᚖchatspaceᚑserverᚋgraphᚋmodelᚐAuthResponse(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) fieldContext_Mutation_register(ctx context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
@@ -1381,7 +1381,7 @@ func (ec *executionContext) _Mutation_login(ctx context.Context, field graphql.C
 	}
 	res := resTmp.(*model.AuthResponse)
 	fc.Result = res
-	return ec.marshalNAuthResponse2ᚖhoraᚑserverᚋgraphᚋmodelᚐAuthResponse(ctx, field.Selections, res)
+	return ec.marshalNAuthResponse2ᚖchatspaceᚑserverᚋgraphᚋmodelᚐAuthResponse(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) fieldContext_Mutation_login(ctx context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
@@ -1442,7 +1442,7 @@ func (ec *executionContext) _Mutation_refreshToken(ctx context.Context, field gr
 	}
 	res := resTmp.(*model.AuthResponse)
 	fc.Result = res
-	return ec.marshalNAuthResponse2ᚖhoraᚑserverᚋgraphᚋmodelᚐAuthResponse(ctx, field.Selections, res)
+	return ec.marshalNAuthResponse2ᚖchatspaceᚑserverᚋgraphᚋmodelᚐAuthResponse(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) fieldContext_Mutation_refreshToken(ctx context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
@@ -1503,7 +1503,7 @@ func (ec *executionContext) _Mutation_sendMessage(ctx context.Context, field gra
 	}
 	res := resTmp.(*model.Message)
 	fc.Result = res
-	return ec.marshalNMessage2ᚖhoraᚑserverᚋgraphᚋmodelᚐMessage(ctx, field.Selections, res)
+	return ec.marshalNMessage2ᚖchatspaceᚑserverᚋgraphᚋmodelᚐMessage(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) fieldContext_Mutation_sendMessage(ctx context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
@@ -1570,7 +1570,7 @@ func (ec *executionContext) _Mutation_createSpace(ctx context.Context, field gra
 	}
 	res := resTmp.(*model.Space)
 	fc.Result = res
-	return ec.marshalNSpace2ᚖhoraᚑserverᚋgraphᚋmodelᚐSpace(ctx, field.Selections, res)
+	return ec.marshalNSpace2ᚖchatspaceᚑserverᚋgraphᚋmodelᚐSpace(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) fieldContext_Mutation_createSpace(ctx context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
@@ -1639,7 +1639,7 @@ func (ec *executionContext) _Mutation_joinSpace(ctx context.Context, field graph
 	}
 	res := resTmp.(*model.Space)
 	fc.Result = res
-	return ec.marshalNSpace2ᚖhoraᚑserverᚋgraphᚋmodelᚐSpace(ctx, field.Selections, res)
+	return ec.marshalNSpace2ᚖchatspaceᚑserverᚋgraphᚋmodelᚐSpace(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) fieldContext_Mutation_joinSpace(ctx context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
@@ -1705,7 +1705,7 @@ func (ec *executionContext) _Query_user(ctx context.Context, field graphql.Colle
 	}
 	res := resTmp.(*model.User)
 	fc.Result = res
-	return ec.marshalOUser2ᚖhoraᚑserverᚋgraphᚋmodelᚐUser(ctx, field.Selections, res)
+	return ec.marshalOUser2ᚖchatspaceᚑserverᚋgraphᚋmodelᚐUser(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) fieldContext_Query_user(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
@@ -1763,7 +1763,7 @@ func (ec *executionContext) _Query_messages(ctx context.Context, field graphql.C
 	}
 	res := resTmp.([]*model.Message)
 	fc.Result = res
-	return ec.marshalNMessage2ᚕᚖhoraᚑserverᚋgraphᚋmodelᚐMessageᚄ(ctx, field.Selections, res)
+	return ec.marshalNMessage2ᚕᚖchatspaceᚑserverᚋgraphᚋmodelᚐMessageᚄ(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) fieldContext_Query_messages(ctx context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
@@ -1830,7 +1830,7 @@ func (ec *executionContext) _Query_spaces(ctx context.Context, field graphql.Col
 	}
 	res := resTmp.([]*model.Space)
 	fc.Result = res
-	return ec.marshalNSpace2ᚕᚖhoraᚑserverᚋgraphᚋmodelᚐSpaceᚄ(ctx, field.Selections, res)
+	return ec.marshalNSpace2ᚕᚖchatspaceᚑserverᚋgraphᚋmodelᚐSpaceᚄ(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) fieldContext_Query_spaces(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
@@ -1885,7 +1885,7 @@ func (ec *executionContext) _Query_space(ctx context.Context, field graphql.Coll
 	}
 	res := resTmp.(*model.Space)
 	fc.Result = res
-	return ec.marshalOSpace2ᚖhoraᚑserverᚋgraphᚋmodelᚐSpace(ctx, field.Selections, res)
+	return ec.marshalOSpace2ᚖchatspaceᚑserverᚋgraphᚋmodelᚐSpace(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) fieldContext_Query_space(ctx context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
@@ -2214,7 +2214,7 @@ func (ec *executionContext) _Space_members(ctx context.Context, field graphql.Co
 	}
 	res := resTmp.([]*model.User)
 	fc.Result = res
-	return ec.marshalNUser2ᚕᚖhoraᚑserverᚋgraphᚋmodelᚐUserᚄ(ctx, field.Selections, res)
+	return ec.marshalNUser2ᚕᚖchatspaceᚑserverᚋgraphᚋmodelᚐUserᚄ(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) fieldContext_Space_members(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
@@ -2272,7 +2272,7 @@ func (ec *executionContext) _Space_admins(ctx context.Context, field graphql.Col
 	}
 	res := resTmp.([]*model.User)
 	fc.Result = res
-	return ec.marshalNUser2ᚕᚖhoraᚑserverᚋgraphᚋmodelᚐUserᚄ(ctx, field.Selections, res)
+	return ec.marshalNUser2ᚕᚖchatspaceᚑserverᚋgraphᚋmodelᚐUserᚄ(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) fieldContext_Space_admins(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
@@ -2330,7 +2330,7 @@ func (ec *executionContext) _Space_Messages(ctx context.Context, field graphql.C
 	}
 	res := resTmp.([]*model.Message)
 	fc.Result = res
-	return ec.marshalNMessage2ᚕᚖhoraᚑserverᚋgraphᚋmodelᚐMessageᚄ(ctx, field.Selections, res)
+	return ec.marshalNMessage2ᚕᚖchatspaceᚑserverᚋgraphᚋmodelᚐMessageᚄ(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) fieldContext_Space_Messages(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
@@ -2394,7 +2394,7 @@ func (ec *executionContext) _Subscription_messageSent(ctx context.Context, field
 				w.Write([]byte{'{'})
 				graphql.MarshalString(field.Alias).MarshalGQL(w)
 				w.Write([]byte{':'})
-				ec.marshalNMessage2ᚖhoraᚑserverᚋgraphᚋmodelᚐMessage(ctx, field.Selections, res).MarshalGQL(w)
+				ec.marshalNMessage2ᚖchatspaceᚑserverᚋgraphᚋmodelᚐMessage(ctx, field.Selections, res).MarshalGQL(w)
 				w.Write([]byte{'}'})
 			})
 		case <-ctx.Done():
@@ -5594,11 +5594,11 @@ func (ec *executionContext) ___Type(ctx context.Context, sel ast.SelectionSet, o
 
 // region    ***************************** type.gotpl *****************************
 
-func (ec *executionContext) marshalNAuthResponse2horaᚑserverᚋgraphᚋmodelᚐAuthResponse(ctx context.Context, sel ast.SelectionSet, v model.AuthResponse) graphql.Marshaler {
+func (ec *executionContext) marshalNAuthResponse2chatspaceᚑserverᚋgraphᚋmodelᚐAuthResponse(ctx context.Context, sel ast.SelectionSet, v model.AuthResponse) graphql.Marshaler {
 	return ec._AuthResponse(ctx, sel, &v)
 }
 
-func (ec *executionContext) marshalNAuthResponse2ᚖhoraᚑserverᚋgraphᚋmodelᚐAuthResponse(ctx context.Context, sel ast.SelectionSet, v *model.AuthResponse) graphql.Marshaler {
+func (ec *executionContext) marshalNAuthResponse2ᚖchatspaceᚑserverᚋgraphᚋmodelᚐAuthResponse(ctx context.Context, sel ast.SelectionSet, v *model.AuthResponse) graphql.Marshaler {
 	if v == nil {
 		if !graphql.HasFieldError(ctx, graphql.GetFieldContext(ctx)) {
 			ec.Errorf(ctx, "the requested element is null which the schema does not allow")
@@ -5640,16 +5640,16 @@ func (ec *executionContext) marshalNID2string(ctx context.Context, sel ast.Selec
 	return res
 }
 
-func (ec *executionContext) unmarshalNLoginRequest2horaᚑserverᚋgraphᚋmodelᚐLoginRequest(ctx context.Context, v any) (model.LoginRequest, error) {
+func (ec *executionContext) unmarshalNLoginRequest2chatspaceᚑserverᚋgraphᚋmodelᚐLoginRequest(ctx context.Context, v any) (model.LoginRequest, error) {
 	res, err := ec.unmarshalInputLoginRequest(ctx, v)
 	return res, graphql.ErrorOnPath(ctx, err)
 }
 
-func (ec *executionContext) marshalNMessage2horaᚑserverᚋgraphᚋmodelᚐMessage(ctx context.Context, sel ast.SelectionSet, v model.Message) graphql.Marshaler {
+func (ec *executionContext) marshalNMessage2chatspaceᚑserverᚋgraphᚋmodelᚐMessage(ctx context.Context, sel ast.SelectionSet, v model.Message) graphql.Marshaler {
 	return ec._Message(ctx, sel, &v)
 }
 
-func (ec *executionContext) marshalNMessage2ᚕᚖhoraᚑserverᚋgraphᚋmodelᚐMessageᚄ(ctx context.Context, sel ast.SelectionSet, v []*model.Message) graphql.Marshaler {
+func (ec *executionContext) marshalNMessage2ᚕᚖchatspaceᚑserverᚋgraphᚋmodelᚐMessageᚄ(ctx context.Context, sel ast.SelectionSet, v []*model.Message) graphql.Marshaler {
 	ret := make(graphql.Array, len(v))
 	var wg sync.WaitGroup
 	isLen1 := len(v) == 1
@@ -5673,7 +5673,7 @@ func (ec *executionContext) marshalNMessage2ᚕᚖhoraᚑserverᚋgraphᚋmodel�
 			if !isLen1 {
 				defer wg.Done()
 			}
-			ret[i] = ec.marshalNMessage2ᚖhoraᚑserverᚋgraphᚋmodelᚐMessage(ctx, sel, v[i])
+			ret[i] = ec.marshalNMessage2ᚖchatspaceᚑserverᚋgraphᚋmodelᚐMessage(ctx, sel, v[i])
 		}
 		if isLen1 {
 			f(i)
@@ -5693,7 +5693,7 @@ func (ec *executionContext) marshalNMessage2ᚕᚖhoraᚑserverᚋgraphᚋmodel�
 	return ret
 }
 
-func (ec *executionContext) marshalNMessage2ᚖhoraᚑserverᚋgraphᚋmodelᚐMessage(ctx context.Context, sel ast.SelectionSet, v *model.Message) graphql.Marshaler {
+func (ec *executionContext) marshalNMessage2ᚖchatspaceᚑserverᚋgraphᚋmodelᚐMessage(ctx context.Context, sel ast.SelectionSet, v *model.Message) graphql.Marshaler {
 	if v == nil {
 		if !graphql.HasFieldError(ctx, graphql.GetFieldContext(ctx)) {
 			ec.Errorf(ctx, "the requested element is null which the schema does not allow")
@@ -5703,21 +5703,21 @@ func (ec *executionContext) marshalNMessage2ᚖhoraᚑserverᚋgraphᚋmodelᚐM
 	return ec._Message(ctx, sel, v)
 }
 
-func (ec *executionContext) unmarshalNRefreshRequest2horaᚑserverᚋgraphᚋmodelᚐRefreshRequest(ctx context.Context, v any) (model.RefreshRequest, error) {
+func (ec *executionContext) unmarshalNRefreshRequest2chatspaceᚑserverᚋgraphᚋmodelᚐRefreshRequest(ctx context.Context, v any) (model.RefreshRequest, error) {
 	res, err := ec.unmarshalInputRefreshRequest(ctx, v)
 	return res, graphql.ErrorOnPath(ctx, err)
 }
 
-func (ec *executionContext) unmarshalNRegisterRequest2horaᚑserverᚋgraphᚋmodelᚐRegisterRequest(ctx context.Context, v any) (model.RegisterRequest, error) {
+func (ec *executionContext) unmarshalNRegisterRequest2chatspaceᚑserverᚋgraphᚋmodelᚐRegisterRequest(ctx context.Context, v any) (model.RegisterRequest, error) {
 	res, err := ec.unmarshalInputRegisterRequest(ctx, v)
 	return res, graphql.ErrorOnPath(ctx, err)
 }
 
-func (ec *executionContext) marshalNSpace2horaᚑserverᚋgraphᚋmodelᚐSpace(ctx context.Context, sel ast.SelectionSet, v model.Space) graphql.Marshaler {
+func (ec *executionContext) marshalNSpace2chatspaceᚑserverᚋgraphᚋmodelᚐSpace(ctx context.Context, sel ast.SelectionSet, v model.Space) graphql.Marshaler {
 	return ec._Space(ctx, sel, &v)
 }
 
-func (ec *executionContext) marshalNSpace2ᚕᚖhoraᚑserverᚋgraphᚋmodelᚐSpaceᚄ(ctx context.Context, sel ast.SelectionSet, v []*model.Space) graphql.Marshaler {
+func (ec *executionContext) marshalNSpace2ᚕᚖchatspaceᚑserverᚋgraphᚋmodelᚐSpaceᚄ(ctx context.Context, sel ast.SelectionSet, v []*model.Space) graphql.Marshaler {
 	ret := make(graphql.Array, len(v))
 	var wg sync.WaitGroup
 	isLen1 := len(v) == 1
@@ -5741,7 +5741,7 @@ func (ec *executionContext) marshalNSpace2ᚕᚖhoraᚑserverᚋgraphᚋmodelᚐ
 			if !isLen1 {
 				defer wg.Done()
 			}
-			ret[i] = ec.marshalNSpace2ᚖhoraᚑserverᚋgraphᚋmodelᚐSpace(ctx, sel, v[i])
+			ret[i] = ec.marshalNSpace2ᚖchatspaceᚑserverᚋgraphᚋmodelᚐSpace(ctx, sel, v[i])
 		}
 		if isLen1 {
 			f(i)
@@ -5761,7 +5761,7 @@ func (ec *executionContext) marshalNSpace2ᚕᚖhoraᚑserverᚋgraphᚋmodelᚐ
 	return ret
 }
 
-func (ec *executionContext) marshalNSpace2ᚖhoraᚑserverᚋgraphᚋmodelᚐSpace(ctx context.Context, sel ast.SelectionSet, v *model.Space) graphql.Marshaler {
+func (ec *executionContext) marshalNSpace2ᚖchatspaceᚑserverᚋgraphᚋmodelᚐSpace(ctx context.Context, sel ast.SelectionSet, v *model.Space) graphql.Marshaler {
 	if v == nil {
 		if !graphql.HasFieldError(ctx, graphql.GetFieldContext(ctx)) {
 			ec.Errorf(ctx, "the requested element is null which the schema does not allow")
@@ -5771,7 +5771,7 @@ func (ec *executionContext) marshalNSpace2ᚖhoraᚑserverᚋgraphᚋmodelᚐSpa
 	return ec._Space(ctx, sel, v)
 }
 
-func (ec *executionContext) unmarshalNSpaceRequest2horaᚑserverᚋgraphᚋmodelᚐSpaceRequest(ctx context.Context, v any) (model.SpaceRequest, error) {
+func (ec *executionContext) unmarshalNSpaceRequest2chatspaceᚑserverᚋgraphᚋmodelᚐSpaceRequest(ctx context.Context, v any) (model.SpaceRequest, error) {
 	res, err := ec.unmarshalInputSpaceRequest(ctx, v)
 	return res, graphql.ErrorOnPath(ctx, err)
 }
@@ -5808,7 +5808,7 @@ func (ec *executionContext) marshalNTime2timeᚐTime(ctx context.Context, sel as
 	return res
 }
 
-func (ec *executionContext) marshalNUser2ᚕᚖhoraᚑserverᚋgraphᚋmodelᚐUserᚄ(ctx context.Context, sel ast.SelectionSet, v []*model.User) graphql.Marshaler {
+func (ec *executionContext) marshalNUser2ᚕᚖchatspaceᚑserverᚋgraphᚋmodelᚐUserᚄ(ctx context.Context, sel ast.SelectionSet, v []*model.User) graphql.Marshaler {
 	ret := make(graphql.Array, len(v))
 	var wg sync.WaitGroup
 	isLen1 := len(v) == 1
@@ -5832,7 +5832,7 @@ func (ec *executionContext) marshalNUser2ᚕᚖhoraᚑserverᚋgraphᚋmodelᚐU
 			if !isLen1 {
 				defer wg.Done()
 			}
-			ret[i] = ec.marshalNUser2ᚖhoraᚑserverᚋgraphᚋmodelᚐUser(ctx, sel, v[i])
+			ret[i] = ec.marshalNUser2ᚖchatspaceᚑserverᚋgraphᚋmodelᚐUser(ctx, sel, v[i])
 		}
 		if isLen1 {
 			f(i)
@@ -5852,7 +5852,7 @@ func (ec *executionContext) marshalNUser2ᚕᚖhoraᚑserverᚋgraphᚋmodelᚐU
 	return ret
 }
 
-func (ec *executionContext) marshalNUser2ᚖhoraᚑserverᚋgraphᚋmodelᚐUser(ctx context.Context, sel ast.SelectionSet, v *model.User) graphql.Marshaler {
+func (ec *executionContext) marshalNUser2ᚖchatspaceᚑserverᚋgraphᚋmodelᚐUser(ctx context.Context, sel ast.SelectionSet, v *model.User) graphql.Marshaler {
 	if v == nil {
 		if !graphql.HasFieldError(ctx, graphql.GetFieldContext(ctx)) {
 			ec.Errorf(ctx, "the requested element is null which the schema does not allow")
@@ -6145,7 +6145,7 @@ func (ec *executionContext) marshalOBoolean2ᚖbool(ctx context.Context, sel ast
 	return res
 }
 
-func (ec *executionContext) marshalOSpace2ᚖhoraᚑserverᚋgraphᚋmodelᚐSpace(ctx context.Context, sel ast.SelectionSet, v *model.Space) graphql.Marshaler {
+func (ec *executionContext) marshalOSpace2ᚖchatspaceᚑserverᚋgraphᚋmodelᚐSpace(ctx context.Context, sel ast.SelectionSet, v *model.Space) graphql.Marshaler {
 	if v == nil {
 		return graphql.Null
 	}
@@ -6170,7 +6170,7 @@ func (ec *executionContext) marshalOString2ᚖstring(ctx context.Context, sel as
 	return res
 }
 
-func (ec *executionContext) marshalOUser2ᚖhoraᚑserverᚋgraphᚋmodelᚐUser(ctx context.Context, sel ast.SelectionSet, v *model.User) graphql.Marshaler {
+func (ec *executionContext) marshalOUser2ᚖchatspaceᚑserverᚋgraphᚋmodelᚐUser(ctx context.Context, sel ast.SelectionSet, v *model.User) graphql.Marshaler {
 	if v == nil {
 		return graphql.Null
 	}

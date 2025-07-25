@@ -2,7 +2,7 @@ package resolver
 
 import (
 	"context"
-	"hora-server/graph/model"
+	"chatspace-server/graph/model"
 )
 
 // This file will not be regenerated automatically.

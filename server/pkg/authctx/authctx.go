@@ -2,8 +2,8 @@ package authctx
 
 import (
 	"context"
-	"hora-server/constant"
-	"hora-server/handler/middleware"
+	"chatspace-server/constant"
+	"chatspace-server/handler/middleware"
 
 	"github.com/99designs/gqlgen/graphql"
 )

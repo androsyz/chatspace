@@ -2,7 +2,7 @@ package repository
 
 import (
 	"context"
-	modelDB "hora-server/model"
+	modelDB "chatspace-server/model"
 	"time"
 
 	"github.com/go-redis/redis/v8"

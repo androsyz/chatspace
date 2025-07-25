@@ -4,7 +4,7 @@ import (
 	"context"
 	"database/sql"
 	"errors"
-	modelDB "hora-server/model"
+	modelDB "chatspace-server/model"
 	"time"
 
 	"github.com/google/uuid"

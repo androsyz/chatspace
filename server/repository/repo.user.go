@@ -3,7 +3,7 @@ package repository
 import (
 	"context"
 	"database/sql"
-	"hora-server/model"
+	"chatspace-server/model"
 	"time"
 
 	"github.com/google/uuid"
