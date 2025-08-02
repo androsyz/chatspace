@@ -1,0 +1,1 @@
+A real-time chat application built with Go and GraphQL. It leverages GraphQL subscriptions for live updates and uses Redis Pub/Sub for efficient message broadcasting across multiple instances.
