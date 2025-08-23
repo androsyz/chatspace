@@ -1,12 +1,12 @@
 package main
 
 import (
-	"context"
-	"chatspace-server/cmd/initalize"
+	initialize "chatspace-server/cmd/initialize"
 	"chatspace-server/config"
 	"chatspace-server/graph/generated"
 	"chatspace-server/handler/middleware"
 	"chatspace-server/handler/resolver"
+	"context"
 	"log"
 	"net/http"
 	"slices"
@@ -33,7 +33,7 @@ func main() {
 		return
 	}
 
-	app, err := initalize.Bootstrap(ctx, cfg, zlog)
+	app, err := initialize.Bootstrap(ctx, cfg, zlog)
 	if err != nil {
 		zlog.Err(err)
 		return

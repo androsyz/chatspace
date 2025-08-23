@@ -1,10 +1,10 @@
-package initalize
+package initialize
 
 import (
-	"context"
 	"chatspace-server/config"
 	"chatspace-server/repository"
 	"chatspace-server/usecase"
+	"context"
 
 	"github.com/rs/zerolog"
 )
